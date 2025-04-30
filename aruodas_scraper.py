@@ -77,13 +77,16 @@ def main():
             flats_data.append(flat_info)
             save_if_new(flat_info)
 
+    with open("output/output.json", "w", encoding="utf-8") as f:
+        json.dump(flats_data, f, indent=2, ensure_ascii=False)
+
     
     logger.info(f"Total flats scraped: {len(flats_data)}")
-
+    return flats_data
 
 if __name__ == "__main__":
     start_time = time.time()
-    main()
+    print(main())
     total_time = time.time() - start_time
     logger.info(f"Finished in {round(total_time, 2)} seconds")
 
